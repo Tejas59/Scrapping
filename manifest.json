@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "AmbitionBox Scraper",
+  "version": "1.0",
+  "description": "Scrapes company data from AmbitionBox and downloads it as Excel.",
+  "permissions": [
+    "tabs", 
+    "scripting", 
+    "activeTab",
+    "storage",
+    "downloads"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/icon16.png",
+      "32": "/images/icon32.png",
+      "48": "/images/icon48.png"
+    }
+  },
+  "host_permissions": [
+    "*://www.ambitionbox.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.ambitionbox.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
